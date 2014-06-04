@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="1"
+		android:icon="@drawable/ic_action_settings"
+        android:title="@string/action_settings_string"
+        android:showAsAction="never"/>
+    
+    <item
+        android:id="@+id/add_edit_playlists"
+        android:orderInCategory="1"
+        android:icon="@drawable/ic_action_new_event"
+        android:title="@string/add_edit_playlists_string"
+        android:showAsAction="never"/>
+
+</menu>
