@@ -33,12 +33,12 @@ public class MainActivity extends Activity{
 	public boolean onOptionsItemSelected(MenuItem item){
 		//Handle presses on the action bar items
 		switch(item.getItemId()) {
-		case R.id.action_settings:
-			Intent intent = new Intent(this, Settings.class);
+		case R.id.add_edit_playlists:
+			Intent intent = new Intent(this, PlaylistListView.class);
 			startActivity(intent);
 			return true;
-		case R.id.add_edit_playlists:
-			Intent intent1 = new Intent(this, PlaylistListView.class);
+		case R.id.action_settings:
+			Intent intent1 = new Intent(this, Settings.class);
 			startActivity(intent1);
 			return true;
 		default:

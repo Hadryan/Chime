@@ -9,6 +9,7 @@ public class Playlists {
 	private Map<String, ArrayList<String>> playlists;
 	
 	public boolean newPlaylist(){
+		return false;
 		
 	}
 	
@@ -19,10 +20,12 @@ public class Playlists {
 	
 	
 	public boolean saveToDevice(){
+		return false;
 		
 	}
 	
 	public boolean loadFromDevice(){
+		return false;
 		
 	}
 	

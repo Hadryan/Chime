@@ -30,7 +30,16 @@
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.example.chime.MainActivity" />
-    </activity>
+        </activity>
+        <activity
+        android:name="com.example.chime.AddPlaylistView"
+        android:label="@string/add_playlist_string"
+        android:parentActivityName="com.example.chime.PlaylistView" >
+        <!-- Parent activity meta-data to support 4.0 and lower -->
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.example.chime.PlayListView" />
+        </activity>
     </application>
 
 </manifest>
