@@ -1,5 +1,6 @@
 package com.example.chime;
 
+import models.MusicGrabber;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
@@ -22,6 +23,12 @@ public class AddPlaylistView extends Activity{
 		
 		// minSDKVersion is 11 or higher
 	    getActionBar().setDisplayHomeAsUpEnabled(true);
+	    
+	    //Prepare all music from the phone.
+	    MusicGrabber music = null;
+	    music.prepare();
+	    
+	    
 	}
 	
 	//Creates the fragment

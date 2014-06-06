@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.ActionBar.OnNavigationListener;
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,15 +13,20 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 public class MainActivity extends Activity{
+	
+	Button mPlayButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		mPlayButton = (Button) findViewById(R.id.button1);
+		mPlayButton.setOnClickListener((android.view.View.OnClickListener) this);
 	}
 
 	@Override
@@ -45,6 +52,14 @@ public class MainActivity extends Activity{
 			return super.onOptionsItemSelected(item);
 		}
 	}
+
+	public void onClick(View target) {
+		if(target == mPlayButton){
+			Intent intent = new Intent(this, GeoMusicPlayer.class);
+			startActivity(intent);	
+		}	
+	}
+
 
 	
 
