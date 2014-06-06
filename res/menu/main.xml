@@ -4,13 +4,15 @@
         android:id="@+id/add_edit_playlists"
         android:icon="@drawable/ic_action_new_event"
         android:title="@string/add_edit_playlists_string"
+        android:showAsAction="ifRoom"
         />
     
     <item
         android:id="@+id/action_settings"
 		android:icon="@drawable/ic_action_settings"
         android:title="@string/action_settings_string"
-        android:showAsAction="never"/>
+        android:showAsAction="ifRoom"
+        />
     
     
 

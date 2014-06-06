@@ -18,25 +18,24 @@ public class AddPlaylistView extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		
+		setContentView(R.layout.new_playlist_view);
 		
 		// minSDKVersion is 11 or higher
 	    getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 	
 	//Creates the fragment
-	@Override
-	public void onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-		
-		
-	}
+//	@Override
+//	public void onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+//		
+//		
+//	}
 	
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.new_playlist_menu, menu);
 		return super.onCreateOptionsMenu (menu);
 	}
 

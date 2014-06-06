@@ -30,7 +30,13 @@
                     android:id="@+id/tab1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/songs" >
+                    android:text="@string/songs"
+                    android:baselineAligned="false" >
+                    <fragment android:name="com.example.chime.SongsFragment"
+                        android:id="@+id/songslist"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -38,7 +44,13 @@
                     android:id="@+id/tab2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/artists" >
+                    android:text="@string/artists" 
+                    android:baselineAligned="false" >
+                    <fragment android:name="com.example.chime.ArtistsFragment"
+                        android:id="@+id/artistlist"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -46,7 +58,13 @@
                     android:id="@+id/tab3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/genres" >
+                    android:text="@string/genres" 
+                    android:baselineAligned="false">
+                    <fragment android:name="com.example.chime.GenresFragment"
+                        android:id="@+id/genrelist"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
                 </LinearLayout>
             </FrameLayout>
         </LinearLayout>

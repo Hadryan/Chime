@@ -5,6 +5,7 @@
         android:id="@+id/add_playlist"
         android:icon="@drawable/ic_action_new_event"
         android:title="@string/add_playlist_string"
+        android:showAsAction="ifRoom"
     />
     
 
