@@ -1,0 +1,25 @@
+Time line of functions being used when a user wants to create a new play list and attach it to a
+location.
+1. Once the user presses the application icon (Chime), activity_main.xml is presented.
+
+2. The user can now go the list view of play lists currently created. This is the playlist_view.xml file.
+The play list view is shown. I want the list view here to take objects from the Play lists class
+and list them in the adapter. Information in each list item will be: User-made title, location in 
+which this play list is for. Possible design choice in the future is when you press the list item once it expands to show more
+info maybe such as genres of music it entitles, or last time it was played. Then when it is pressed again it can be played.
+ 
+3. Then a new play list icon is pressed. This takes the user to new_playlist_view.xml. music.prepare(); is called. mItems is the 
+variable in which all of the song items will be held. They are automatically sorted while querying for them initially. 
+This view has a tab view, showing either songs, albums or artists. A check box is shown beside every song item through
+each tab view. When the user is done here they can save the play list and it will be saved to the phone. This class also 
+puts all of the music in the right sorted format and will then send it to the corresponding fragments. 
+The fragments for the tab views are all created in the xml code for new_playlist_view.xml.
+
+The first default fragment that will be created is the general list of songs that is on the users device. 
+
+
+
+
+
+List of things to do:
+-need to add listener to list items, listview.setOnItemClickListener();

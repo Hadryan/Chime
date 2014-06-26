@@ -60,7 +60,7 @@
                     android:layout_height="match_parent"
                     android:text="@string/genres" 
                     android:baselineAligned="false">
-                    <fragment android:name="com.example.chime.GenresFragment"
+                    <fragment android:name="com.example.chime.AlbumFragment"
                         android:id="@+id/genrelist"
                         android:layout_weight="1"
                         android:layout_width="0dp"

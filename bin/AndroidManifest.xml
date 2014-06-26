@@ -30,7 +30,7 @@
         </activity>
         <activity
         android:name="com.example.chime.PlaylistListView"
-        android:label="@string/add_edit_playlists_string"
+        android:label="@string/list_playlist"
         android:parentActivityName="com.example.chime.MainActivity" >
         <!-- Parent activity meta-data to support 4.0 and lower -->
         <meta-data

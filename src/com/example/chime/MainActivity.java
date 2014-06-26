@@ -1,22 +1,14 @@
 package com.example.chime;
 
-import android.os.Bundle;
-import android.app.ActionBar;
-import android.app.ActionBar.OnNavigationListener;
 import android.app.Activity;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 
-public class MainActivity extends Activity{
+public class MainActivity extends Activity implements View.OnClickListener{
 	
 	Button mPlayButton;
 
@@ -26,7 +18,7 @@ public class MainActivity extends Activity{
 		setContentView(R.layout.activity_main);
 		
 		mPlayButton = (Button) findViewById(R.id.button1);
-		mPlayButton.setOnClickListener((android.view.View.OnClickListener) this);
+		mPlayButton.setOnClickListener(this);
 	}
 
 	@Override
@@ -40,7 +32,7 @@ public class MainActivity extends Activity{
 	public boolean onOptionsItemSelected(MenuItem item){
 		//Handle presses on the action bar items
 		switch(item.getItemId()) {
-		case R.id.add_edit_playlists:
+		case R.id.list_playlists:
 			Intent intent = new Intent(this, PlaylistListView.class);
 			startActivity(intent);
 			return true;
@@ -53,12 +45,13 @@ public class MainActivity extends Activity{
 		}
 	}
 
-	public void onClick(View target) {
-		if(target == mPlayButton){
-			Intent intent = new Intent(this, GeoMusicPlayer.class);
-			startActivity(intent);	
-		}	
+	@Override
+	public void onClick(View v) {
+		Intent intent = new Intent(this, GeoMusicPlayer.class);
+		startActivity(intent);
 	}
+
+
 
 
 	

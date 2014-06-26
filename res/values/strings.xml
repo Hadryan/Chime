@@ -5,12 +5,14 @@
     <string name="action_settings_string">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="play_button">Play</string>
-    <string name="add_edit_playlists_string">Playlists</string>
+    <string name="list_playlists_string">Playlists</string>
     <string name="add_playlist_string">Add Playlist</string>
     <string name="songs">Songs</string>
     <string name="location">Location</string>
     <string name="save_playlist_string">Save Playlist</string>
     <string name="artists">Artists</string>
     <string name="genres">Genres</string>
+    <string name="geomusicplayer">GeoMusicPlayer</string>
+    <string name="list_playlist">list playlist</string>
 
 </resources>

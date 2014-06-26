@@ -47,32 +47,38 @@ public final class R {
         public static final int ic_action_user=0x7f020017;
         public static final int ic_action_user_add=0x7f020018;
         public static final int ic_action_video=0x7f020019;
-        public static final int ic_launcher=0x7f02001a;
+        public static final int ic_action_view_as_list=0x7f02001a;
+        public static final int ic_launcher=0x7f02001b;
     }
     public static final class id {
-        public static final int action_settings=0x7f080009;
-        public static final int add_edit_playlists=0x7f080008;
-        public static final int add_playlist=0x7f08000c;
+        public static final int action_settings=0x7f08000b;
+        public static final int add_playlist=0x7f08000e;
         public static final int artistlist=0x7f080005;
         public static final int button1=0x7f080000;
+        public static final int empty=0x7f080008;
         public static final int genrelist=0x7f080007;
         public static final int listView1=0x7f080001;
-        public static final int new_playlist_settings=0x7f08000b;
-        public static final int save_playlist=0x7f08000a;
+        public static final int list_playlists=0x7f08000a;
+        public static final int new_playlist_settings=0x7f08000d;
+        public static final int save_playlist=0x7f08000c;
         public static final int songslist=0x7f080003;
         public static final int tab1=0x7f080002;
         public static final int tab2=0x7f080004;
         public static final int tab3=0x7f080006;
+        public static final int twolinelistview=0x7f080009;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int artists_frag=0x7f030001;
-        public static final int genres_frag=0x7f030002;
-        public static final int geo_music_player=0x7f030003;
-        public static final int map_view=0x7f030004;
-        public static final int new_playlist_view=0x7f030005;
-        public static final int playlist_view=0x7f030006;
-        public static final int songs_frag=0x7f030007;
+        public static final int album_frag=0x7f030001;
+        public static final int artists_frag=0x7f030002;
+        public static final int genres_frag=0x7f030003;
+        public static final int geo_music_player=0x7f030004;
+        public static final int map_view=0x7f030005;
+        public static final int new_playlist_view=0x7f030006;
+        public static final int playlist_view=0x7f030007;
+        public static final int song_frag=0x7f030008;
+        public static final int songs_frag=0x7f030009;
+        public static final int songs_frag_listitem=0x7f03000a;
     }
     public static final class menu {
         public static final int main=0x7f070000;
@@ -81,12 +87,14 @@ public final class R {
     }
     public static final class string {
         public static final int action_settings_string=0x7f050001;
-        public static final int add_edit_playlists_string=0x7f050004;
         public static final int add_playlist_string=0x7f050005;
         public static final int app_name=0x7f050000;
         public static final int artists=0x7f050009;
         public static final int genres=0x7f05000a;
+        public static final int geomusicplayer=0x7f05000b;
         public static final int hello_world=0x7f050002;
+        public static final int list_playlist=0x7f05000c;
+        public static final int list_playlists_string=0x7f050004;
         public static final int location=0x7f050007;
         public static final int play_button=0x7f050003;
         public static final int save_playlist_string=0x7f050008;
