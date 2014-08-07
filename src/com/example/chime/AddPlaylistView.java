@@ -24,7 +24,7 @@ public class AddPlaylistView extends Activity{
 	private static final String TAG = "MusicGrabber";
 	
 	//All of the songs on the device
-	public List<Song> music = new ArrayList<Song>();
+	public static ArrayList<Song> music = new ArrayList<Song>();
 	
 	static Map<String, Song> songsInTitleFormat = null;
 	static Map<String, ArrayList<Song>> songsInArtistFormat = null;
@@ -121,6 +121,10 @@ public class AddPlaylistView extends Activity{
 	
 	public static Map<String, Song> getSongsInAlbumFormat(){
 		return songsInAlbumFormat;
+	}
+	
+	public static ArrayList<Song> getMusic(){
+		return music;
 	}
 	
 	public void musicGrabber(){

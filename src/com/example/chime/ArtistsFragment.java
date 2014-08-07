@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import models.MusicGrabber.Item;
+import models.Song;
+
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,10 +19,10 @@ public class ArtistsFragment extends ListFragment{
 	//TODO: songsFromDevice is going to be the content that will derive from songs list 
 	//given from the phone
 	
-	Map<String, ArrayList<Item>> songsInArtistFormat = null;
+	Map<String, ArrayList<Song>> songsInArtistFormat = null;
 	
 	//artists to be added to the playlist
-	Map<String, Item> songsInArtistsFormatForPlaylist = null;
+	Map<String, Song> songsInArtistsFormatForPlaylist = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){

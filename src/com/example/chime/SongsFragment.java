@@ -31,21 +31,18 @@ public class SongsFragment extends ListFragment{
 		getActivity().getActionBar().hide();
 		
 		//get songs in title format
-		songs = AddPlaylistView.getSongsInTitleFormat();
+		//songs = AddPlaylistView.getSongsInTitleFormat();
+		
+		
 		
 		//implementation of songsInTitleFormat for reference:
 		//key = song.title, text2 = song.artist
 		
-		//convert key set of songsInTitleFormat to a string key set because android is dumb and wont recognize is directly
-		//IMPORTANT: WILL ONLY START WITH SONG TITLES AND NOT THE ACTUAL SongS
-		if (songs != null){
-			//return an error toast and don't continue on
-			List<String> list = new ArrayList<String>(songs.keySet());
+		if (AddPlaylistView.getMusic() != null){
+			//trying this new adapter method of things
+			SongAdapter songAdt = new SongAdapter(getActivity(), AddPlaylistView.getMusic());
 			
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,
-					list);
-			
-			setListAdapter(adapter);
+			setListAdapter(songAdt);
 		}
 		
 		

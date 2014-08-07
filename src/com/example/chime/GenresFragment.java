@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import models.MusicGrabber.Item;
+import models.Song;
 
 import android.app.ListFragment;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ public class GenresFragment extends ListFragment{
 	//TODO: songsFromDevice is going to be the content that will derive from songs list 
 	//given from the phone
 	
-	Map<String, ArrayList<Item>> songsInGenreFormat = null;
+	Map<String, ArrayList<Song>> songsInGenreFormat = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){

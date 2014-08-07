@@ -5,8 +5,6 @@ import java.util.Map;
 
 import models.Song;
 
-import android.content.ContentResolver;
-
 public class Playlists {
 	
 	//Initial data to be held by all play lists
