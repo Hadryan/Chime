@@ -4,7 +4,8 @@
         android:id="@+id/list_playlists"
         android:icon="@drawable/ic_action_view_as_list"
         android:title="@string/list_playlists_string"
-        android:showAsAction="ifRoom"
+        android:showAsAction="always"
+        android:orderInCategory="1"
         />
     
     <item
@@ -12,6 +13,7 @@
 		android:icon="@drawable/ic_action_settings"
         android:title="@string/action_settings_string"
         android:showAsAction="ifRoom"
+        android:orderInCategory="2"
         />
     
     

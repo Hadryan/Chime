@@ -1,5 +1,10 @@
 package com.example.chime;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import models.MusicGrabber.Item;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,13 +18,38 @@ public class ArtistsFragment extends ListFragment{
 	//TODO: songsFromDevice is going to be the content that will derive from songs list 
 	//given from the phone
 	
+	Map<String, ArrayList<Item>> songsInArtistFormat = null;
+	
+	//artists to be added to the playlist
+	Map<String, Item> songsInArtistsFormatForPlaylist = null;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		String[] songsFromDevice = null;
-		setListAdapter(new ArrayAdapter<String>(getActivity(),
-				android.R.layout.simple_list_item_1, songsFromDevice));
+		//hide action bar because we just want a list view in this fragment
 		getActivity().getActionBar().hide();
+		
+		//get songs in title format
+		songsInArtistFormat = AddPlaylistView.getSongsInArtistFormat();
+		
+		//implementation of songsInTitleFormat for reference:
+		//key = song.title, text2 = song.artist
+		
+		//convert key set of songsInTitleFormat to a string key set because android is dumb and wont recognize it directly
+		//IMPORTANT: WILL ONLY START WITH SONG TITLES AND NOT THE ACTUAL ITEMS
+		if (songsInArtistFormat != null){
+			//return an error toast and don't continue on
+			List<String> list = new ArrayList<String>(songsInArtistFormat.keySet());
+			
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,
+					list);
+			
+			setListAdapter(adapter);
+		}
+		
+		
+		//TODO: Going to have to switch to expandableListView class as I want to group items
+		
 	}
 	
 	@Override
@@ -27,13 +57,7 @@ public class ArtistsFragment extends ListFragment{
 		
 	}
 	
-	//Creates the fragment
-	//TODO: change placeholder *container* to be the parent of the inflated layout
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-		//Inflate the layout for this fragment.
-		return inflater.inflate(R.layout.artists_frag, container, false);
-	}
+
 	
 
 }

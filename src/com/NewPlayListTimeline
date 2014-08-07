@@ -16,10 +16,36 @@ puts all of the music in the right sorted format and will then send it to the co
 The fragments for the tab views are all created in the xml code for new_playlist_view.xml.
 
 The first default fragment that will be created is the general list of songs that is on the users device. 
+The artist and genre frags are only created when the user swipes to the other tabs corresponding
+to these tabs.
 
+Little empty check boxes are shown beside every song in the song frag, artist in the artist frag
+and genre in the genre frag. These are clicked by the user to be included in the play list. When the 
+user swipes between the tabs, the onPause() function is called by the frags. In this function the 
+songs/artists/genres that the user has already clicked will be saved. 
+
+Then the user can click the top right button to save this play list. All of the songs from the frags
+will be collected and sent to a new object (Playlist(name, songs, artists, genres)).
+
+The user will then be prompted to define a location (or more so a fence) that this play list will
+be played in. 
 
 
 
 
 List of things to do:
 -need to add listener to list items, listview.setOnItemClickListener();
+
+List of notes:
+-need to consider when same subset of songs are to be included in the same play list, for instance when 
+a user clicks some songs on the songs frag and then clicks on an artist in the artists frag that
+includes the song which is already clicked.
+In this instance both can be clicked but a checker must run after the playlist is
+saved to make sure only one reference to the song(item) is included in the playlist and not two
+-
+
+
+safety musicgrabber.java: http://pastebin.com/LdRxxZCA
+
+credits:
+-http://code.tutsplus.com/tutorials/create-a-music-player-on-android-project-setup--mobile-22764
