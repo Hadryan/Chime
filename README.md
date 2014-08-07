@@ -1,7 +1,7 @@
 Chime
 =====
 
-Location-based Music Player Android App
+Location-based Music Player Android App!
 
 Currently not fully functional yet. 
 
@@ -9,26 +9,22 @@ Notes I have been taking on the project:
 
 Time line of functions being used when a user wants to create a new play list and attach it to a
 location.
-1. Once the user presses the application icon (Chime), activity_main.xml is presented.
+Once the user presses the application icon (Chime), activity_main.xml(the main activity) is shown.
 
-2. The user can now go the list view of play lists currently created. This is the playlist_view.xml file.
-The play list view is shown. I want the list view here to take objects from the Play lists class
-and list them in the adapter. Information in each list item will be: User-made title, location in 
-which this play list is for. Possible design choice in the future is when you press the list item once it expands to show more
-info maybe such as genres of music it entitles, or last time it was played. Then when it is pressed again it can be played.
+The user can now go the list view of play lists currently created. These will be stored on the users device. This is the playlist_view.xml file.
+The play list view is shown. I want the list view here to take objects from the Playlists class
+and list them in the adapter. Information in each list item will be: User-made title, (general) location in 
+which this play list is for. Possible design choice in the future is when you press the list item once it expands to show more info maybe such as genres of music it entitles, or last time it was played. Then when it is pressed again it can be played.
  
-3. Then a new play list icon is pressed. This takes the user to new_playlist_view.xml. music.prepare(); is called. mItems is the 
-variable in which all of the song items will be held. They are automatically sorted while querying for them initially. 
-This view has a tab view, showing either songs, albums or artists. A check box is shown beside every song item through
-each tab view. When the user is done here they can save the play list and it will be saved to the phone. This class also 
-puts all of the music in the right sorted format and will then send it to the corresponding fragments. 
-The fragments for the tab views are all created in the xml code for new_playlist_view.xml.
+The user can then press an icon on the top right of the screen to be brought to the create new playlist screen. This takes the user to new_playlist_view.xml. Music is the variable in which all of the song items will be held. They are automatically sorted while querying for them initially.
+
+The layout for this activity has a tab view, showing either songs, albums or artists. A check box is shown beside every song item through each tab view. The user can tap on the songs he/she wants for the playlist. When the user is done here they can save the play list and it will be saved to the phone. This class also puts all of the music in the right sorted format and will then send it to the corresponding fragments. The fragments for the tab views are all created in the xml code for new_playlist_view.xml.
 
 The first default fragment that will be created is the general list of songs that is on the users device. 
 The artist and genre frags are only created when the user swipes to the other tabs corresponding
 to these tabs.
 
-Little empty check boxes are shown beside every song in the song frag, artist in the artist frag
+More explanation: Little empty check boxes are shown beside every song in the song frag, artist in the artist frag
 and genre in the genre frag. These are clicked by the user to be included in the play list. When the 
 user swipes between the tabs, the onPause() function is called by the frags. In this function the 
 songs/artists/genres that the user has already clicked will be saved. 
