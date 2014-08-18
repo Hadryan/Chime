@@ -7,7 +7,7 @@ Currently not fully functional yet.
 
 Notes I have been taking on the project:
 
-Time line of functions being used when a user wants to create a new play list and attach it to a
+A descriptopn of functions being used when a user wants to create a new play list and attach it to a
 location.
 Once the user presses the application icon (Chime), activity_main.xml(the main activity) is shown.
 
