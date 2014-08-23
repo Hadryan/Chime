@@ -29,18 +29,12 @@ public class SongsFragment extends ListFragment{
 		super.onCreate(savedInstanceState);
 		//hide action bar because we just want a list view in this fragment
 		getActivity().getActionBar().hide();
+
 		
-		//get songs in title format
-		//songs = AddPlaylistView.getSongsInTitleFormat();
-		
-		
-		
-		//implementation of songsInTitleFormat for reference:
-		//key = song.title, text2 = song.artist
-		
-		if (AddPlaylistView.getMusic() != null){
+		//Check if there is even music on the device.
+		if (AddPlaylistView.getSongs() != null){
 			//trying this new adapter method of things
-			SongAdapter songAdt = new SongAdapter(getActivity(), AddPlaylistView.getMusic());
+			SongAdapter songAdt = new SongAdapter(getActivity(), AddPlaylistView.getSongs());
 			
 			setListAdapter(songAdt);
 		}

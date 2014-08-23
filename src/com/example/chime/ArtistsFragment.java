@@ -16,36 +16,25 @@ import android.widget.ListView;
 
 public class ArtistsFragment extends ListFragment{
 	
-	//TODO: songsFromDevice is going to be the content that will derive from songs list 
-	//given from the phone
-	
-	Map<String, ArrayList<Song>> songsInArtistFormat = null;
+	Map<String, ArrayList<String>> songsInArtistFormat = null;
 	
 	//artists to be added to the playlist
 	Map<String, Song> songsInArtistsFormatForPlaylist = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
+		
 		super.onCreate(savedInstanceState);
 		//hide action bar because we just want a list view in this fragment
 		getActivity().getActionBar().hide();
 		
-		//get songs in title format
-		songsInArtistFormat = AddPlaylistView.getSongsInArtistFormat();
-		
-		//implementation of songsInTitleFormat for reference:
-		//key = song.title, text2 = song.artist
-		
-		//convert key set of songsInTitleFormat to a string key set because android is dumb and wont recognize it directly
-		//IMPORTANT: WILL ONLY START WITH SONG TITLES AND NOT THE ACTUAL ITEMS
-		if (songsInArtistFormat != null){
-			//return an error toast and don't continue on
-			List<String> list = new ArrayList<String>(songsInArtistFormat.keySet());
+		//Check if there is even music on the device.
+		if (AddPlaylistView.getSongs() != null){
+			//trying this new adapter method of things
+			ArtistAdapter songAdt = new ArtistAdapter(getActivity(),
+					AddPlaylistView.getSongsInArtistFormat());
 			
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,
-					list);
-			
-			setListAdapter(adapter);
+			setListAdapter(songAdt);
 		}
 		
 		
