@@ -53,11 +53,6 @@ public class AddPlaylistView extends Activity{
 	    if (music != null){
 	    	//CORRECTION: Music is already stored nicely and will give me
 	    	//a nice list of all of the songs when queried :)
-	    	//<Song title-Artist title, actual song>
-//	    	for (int i = 0;i < music.size();i++){
-//		    	songsInTitleFormat.put(music.get(i).getTitle() + ", " + music.get(i).getArtist(), 
-//		    			music.get(i));
-//		    }
 	    	
 	    	//<Artist, list of all of the artist songs>
 		    for (int i = 0;i < music.size();i++){
@@ -107,8 +102,10 @@ public class AddPlaylistView extends Activity{
 		return music;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static ArrayList<String> getArtists(){
-		
+		allArtists = (ArrayList<String>) songsInArtistFormat.keySet();
+		return allArtists;
 	}
 	
 	public static Map<String, ArrayList<Song>> getSongsInArtistFormat(){

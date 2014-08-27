@@ -31,11 +31,8 @@ The user will then be prompted to define a location (or more so a fence) that th
 be played in. 
 
 Notes about artist fragment:
-What I have decided to do is have an Arraylist of all of the artists which is presented in the 
-artists fragment, when the user clicks on that specific artist, he/she actually clicks on 
-the key value associated with the map songsInArtistsFormat, which holds all of the songs associated
-with that specific artist. 
-
+Now that we have all of the songs queried, the artist and genre views will be just be sorted views
+of this information. 
 
 
 List of things to do:

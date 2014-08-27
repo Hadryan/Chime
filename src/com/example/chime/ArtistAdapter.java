@@ -14,17 +14,17 @@ import android.widget.TextView;
 
 public class ArtistAdapter extends BaseAdapter{
 
-	private ArrayList<Song> Artists;
+	private ArrayList<Song> artists;
 	private LayoutInflater songInf;
 	
-	public ArtistAdapter(Context c, ArrayList<Song> theSongs){
-		songs=theSongs;
+	public ArtistAdapter(Context c, ArrayList<Song> theArtists){
+		artists=theArtists;
 		songInf=LayoutInflater.from(c);
 	}
 
 	@Override
 	public int getCount() {
-		return songs.size();
+		return artists.size();
 	}
 
 	@Override
@@ -42,15 +42,13 @@ public class ArtistAdapter extends BaseAdapter{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		//map to song layout
-	    LinearLayout songLay = (LinearLayout)songInf.inflate (R.layout.song_list_item,
+	    LinearLayout songLay = (LinearLayout)songInf.inflate (R.layout.artist_list_item,
 	    		parent, false);
-	    //get title and artist views
-	    TextView songView = (TextView)songLay.findViewById(R.id.song_title);
+	    //get artist view
 	    TextView artistView = (TextView)songLay.findViewById(R.id.song_artist);
 	    //get song using position
 	    Song currSong = songs.get(position);
-	    //get title and artist strings
-	    songView.setText(currSong.getTitle());
+	    //set the artist text box
 	    artistView.setText(currSong.getArtist());
 	    //set position as tag
 	    songLay.setTag(position);
