@@ -25,20 +25,16 @@ public class SongsFragment extends ListFragment{
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
-		
 		super.onCreate(savedInstanceState);
 		//hide action bar because we just want a list view in this fragment
 		getActivity().getActionBar().hide();
 
-		
 		//Check if there is even music on the device.
 		if (AddPlaylistView.getSongs() != null){
 			//trying this new adapter method of things
 			SongAdapter songAdt = new SongAdapter(getActivity(), AddPlaylistView.getSongs());
-			
 			setListAdapter(songAdt);
 		}
-		
 		
 		//TODO: Going to have to switch to expandableListView class as I want to group Songs
 		

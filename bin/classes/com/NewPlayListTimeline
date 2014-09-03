@@ -31,8 +31,9 @@ The user will then be prompted to define a location (or more so a fence) that th
 be played in. 
 
 Notes about artist fragment:
-Now that we have all of the songs queried, the artist and genre views will be just be sorted views
-of this information. 
+Now that we have all of the songs queried, the artist view will be just be a sorted view
+of this information. When a user clicks on the artist he/she would like to add to the play list,
+this artist is found in the music class and all of its songs are selected.
 
 
 List of things to do:
@@ -47,7 +48,9 @@ saved to make sure only one reference to the song(item) is included in the playl
 -
 
 
-safety musicgrabber.java: http://pastebin.com/LdRxxZCA
+
 
 credits:
--http://code.tutsplus.com/tutorials/create-a-music-player-on-android-project-setup--mobile-22764
+
+This tutorial was used to learn some concepts of music retrieval, service class, media player, etc: 
+http://code.tutsplus.com/tutorials/create-a-music-player-on-android-project-setup--mobile-22764

@@ -48,26 +48,13 @@ public class AddPlaylistView extends Activity{
 	    //Prepare all music from the phone.
 	    musicGrabber();
 	
-	    //put all this music in list format and send it to the corresponding fragments
-	    
-	    if (music != null){
-	    	//CORRECTION: Music is already stored nicely and will give me
-	    	//a nice list of all of the songs when queried :)
-	    	
-	    	//<Artist, list of all of the artist songs>
-		    for (int i = 0;i < music.size();i++){
-		    	ArrayList emptyList = new ArrayList();
-		    	//create null arraylist to put in an artists value if nothing is there
-		    	if (songsInArtistFormat.get(music.get(i).getArtist()) == null){
-		    		songsInArtistFormat.put(music.get(i).getArtist(), 
-		    				emptyList);
-		    	}
-		    	//add song to correct artist position in map
-		    	songsInArtistFormat.get(music.get(i).getArtist()).add(music.get(i));
-		    }
+		//Make a list of all artists
+	    for (int i = 0;i < music.size();i++){
+	    	ArrayList emptyList = new ArrayList();
+	    	//create null arraylist to put in an artists value if nothing is there
+	    	songsInArtistFormat.get(music.get(i).getArtist()).add(music.get(i));
+	    }
 		    
-		  
-	    } 
 	}
 	
 	@Override
@@ -102,8 +89,10 @@ public class AddPlaylistView extends Activity{
 		return music;
 	}
 	
+	//Sets are weird and casting it to an ArrayList is bad form but it should work for my case.
 	@SuppressWarnings("unchecked")
 	public static ArrayList<String> getArtists(){
+		
 		allArtists = (ArrayList<String>) songsInArtistFormat.keySet();
 		return allArtists;
 	}

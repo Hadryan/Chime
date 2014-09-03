@@ -32,7 +32,7 @@ public class ArtistsFragment extends ListFragment{
 		if (AddPlaylistView.getSongs() != null){
 			//trying this new adapter method of things
 			ArtistAdapter songAdt = new ArtistAdapter(getActivity(),
-					AddPlaylistView.getSongsInArtistFormat());
+					AddPlaylistView.getArtists());
 			
 			setListAdapter(songAdt);
 		}
