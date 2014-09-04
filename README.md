@@ -7,7 +7,7 @@ Currently not fully functional yet.
 
 Notes I have been taking on the project:
 
-A descriptopn of functions being used when a user wants to create a new play list and attach it to a
+A descripton of functions being used when a user wants to create a new play list and attach it to a
 location.
 Once the user presses the application icon (Chime), activity_main.xml(the main activity) is shown.
 
@@ -49,8 +49,8 @@ List of notes:
 a user clicks some songs on the songs frag and then clicks on an artist in the artists frag that
 includes the song which is already clicked.
 In this instance both can be clicked but a checker must run after the playlist is
-saved to make sure only one reference to the song(item) is included in the playlist and not two
--
+saved to make sure only one reference to the song (item) is included in the playlist and not two
+
 
 credits:
 -http://code.tutsplus.com/tutorials/create-a-music-player-on-android-project-setup--mobile-22764
