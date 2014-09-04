@@ -1,39 +1,45 @@
 package com.example.chime;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 import models.Song;
-import android.app.Activity;
+import android.app.ActionBar;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.FragmentActivity;
+import android.app.FragmentTransaction;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class AddPlaylistView extends Activity{
+
+
+
+
+public class AddPlaylistView extends FragmentActivity implements ActionBar.TabListener{
 	
+	private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
 	private static final String TAG = "MusicGrabber";
 	
 	//All of the songs on the device
 	public static ArrayList<Song> music = new ArrayList<Song>();
-	
-	static ArrayList<Song> songsInTitleFormat;
-	static ArrayList<String> allArtists;
-	static Map<String, ArrayList<Song>> songsInArtistFormat;
-	static Map<String, Song> songsInAlbumFormat;
+	static ArrayList<String> allArtists = new ArrayList<String>();
+	static Map<String, ArrayList<Song>> songsInArtistFormat = new HashMap<String, ArrayList<Song>>();
+	static Map<String, ArrayList<Song>> songsInGenreFormat;
 	
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		//implement tabs
+		final ActionBar actionBar = getActionBar();
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.new_playlist_view);
@@ -49,21 +55,64 @@ public class AddPlaylistView extends Activity{
 	    musicGrabber();
 	
 		//Make a list of all artists
-	    for (int i = 0;i < music.size();i++){
-	    	ArrayList emptyList = new ArrayList();
-	    	//create null arraylist to put in an artists value if nothing is there
-	    	songsInArtistFormat.get(music.get(i).getArtist()).add(music.get(i));
+	    
+	    if (music != null){
+	    	for (int i = 0;i < music.size();i++){
+		        //adds a track to its artist key
+	    		Song tempSong = music.get(i);
+	    		ArrayList<Song> emptyList = new ArrayList<Song>();
+	    		if(songsInArtistFormat.get(tempSong.getArtist()) == null){
+		    		songsInArtistFormat.put(tempSong.getArtist(), emptyList);
+	    		}
+	    		songsInArtistFormat.get(tempSong.getArtist()).add(tempSong);
+		    }
 	    }
-		    
+	    
+	    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		
+		
+		//Add 2 tabs 
+	    actionBar.addTab(actionBar.newTab().setText("Songs").setTabListener(this));
+	    actionBar.addTab(actionBar.newTab().setText("Artists").setTabListener(this));
+	    
+	    
 	}
 	
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.new_playlist_menu, menu);
-		return super.onCreateOptionsMenu (menu);
-	}
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        if (savedInstanceState.containsKey(STATE_SELECTED_NAVIGATION_ITEM)) {
+            getActionBar().setSelectedNavigationItem(savedInstanceState.getInt(STATE_SELECTED_NAVIGATION_ITEM));
+        }
+    }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putInt(STATE_SELECTED_NAVIGATION_ITEM, getActionBar().getSelectedNavigationIndex());
+    }
+	
+	@Override
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    }
+	
+	@Override
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+	    if (tab.getPosition() == 0) {
+	      SongsFragment songFrag = new SongsFragment();
+	      getSupportFragmentManager().beginTransaction().replace(R.id.new_playlist_view, songFrag).commit();
+	     } 
+	    else if (tab.getPosition() == 1) {
+	      ArtistsFragment artistFrag = new ArtistsFragment();
+	      getSupportFragmentManager().beginTransaction().replace(R.id.new_playlist_view, artistFrag).commit();
+		}
+	}
+	
+	@Override
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    }
+	
+	
+	
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		//Handle presses on the action bar items
@@ -80,20 +129,27 @@ public class AddPlaylistView extends Activity{
 			return super.onOptionsItemSelected(item);
 		}
 	}
+
 	
-//	public static Map<String, Song> getSongsInTitleFormat(){
-//		return songsInTitleFormat;
-//	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.new_playlist_menu, menu);
+		return super.onCreateOptionsMenu (menu);
+	}
+
 	
 	public static ArrayList<Song> getSongs(){
 		return music;
 	}
 	
-	//Sets are weird and casting it to an ArrayList is bad form but it should work for my case.
 	@SuppressWarnings("unchecked")
 	public static ArrayList<String> getArtists(){
-		
-		allArtists = (ArrayList<String>) songsInArtistFormat.keySet();
+		if(songsInArtistFormat != null){
+			for(String v : songsInArtistFormat.keySet()){
+				allArtists.add(v);
+			}
+		}
 		return allArtists;
 	}
 	
@@ -101,8 +157,8 @@ public class AddPlaylistView extends Activity{
 		return songsInArtistFormat;
 	}
 	
-	public static Map<String, Song> getSongsInAlbumFormat(){
-		return songsInAlbumFormat;
+	public static Map<String, ArrayList<Song>> getSongsInGenreFormat(){
+		return songsInGenreFormat;
 	}
 	
 	
@@ -111,7 +167,6 @@ public class AddPlaylistView extends Activity{
 		//Technically (for instance on my nexus 5) the music is stored on the 
 		//internal storage but for some reason it is recognized as an 
 		//external storage, more research has to be done here
-		boolean isExternalAvailable = false;
 		
 		//the content resolver
 		ContentResolver mContentResolver = getContentResolver();
@@ -137,24 +192,6 @@ public class AddPlaylistView extends Activity{
 			Log.e(TAG, "failed to move cursor to first row (no music on device");
 			return;
 		}
-		
-		//Lets see if external storage is available. This method does everything on
-		//the external what we just did with the internal.
-//		if (isExternalAvailable){
-//			Uri uriExternal = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-//			Log.i(TAG, "URIEXTERNAL: " + uriExternal.toString());
-//			Cursor curExternal = mContentResolver.query(uriExternal, null, 
-//					MediaStore.Audio.Media.IS_MUSIC + " = 1", null, null);
-//			if (curExternal == null){
-//				Log.e(TAG, "Failed to move cursor to first row (no query results");
-//				return;
-//			}
-//			
-//			if(!curExternal.moveToFirst()){
-//				Log.e(TAG, "failed to move cursor to first row (no music on device");
-//				return;
-//			}
-//		}
 		
 		Log.i(TAG, "Listing...");
 		
@@ -183,13 +220,11 @@ public class AddPlaylistView extends Activity{
         
         Log.i(TAG, "Done querying media. MusicGrabber is ready.");
 	}
+
 	
-	public boolean isExternalStorageWritable(){
-		String state = Environment.getExternalStorageState();
-	    if (Environment.MEDIA_MOUNTED.equals(state)) {
-	        return true;
-	    }
-	    return false;
-	}
+	
+	
+	
+	
 
 }

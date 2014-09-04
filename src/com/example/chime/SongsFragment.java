@@ -1,20 +1,12 @@
 package com.example.chime;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import models.Song;
-import android.app.ListFragment;
+import android.support.v4.app.ListFragment;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import java.util.Collections;
-import java.util.Comparator;
-import android.net.Uri;
-import android.content.ContentResolver;
-import android.database.Cursor;
 
 public class SongsFragment extends ListFragment{
 	
@@ -27,11 +19,10 @@ public class SongsFragment extends ListFragment{
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		//hide action bar because we just want a list view in this fragment
-		getActivity().getActionBar().hide();
+		//getActivity().getActionBar().hide();
 
 		//Check if there is even music on the device.
 		if (AddPlaylistView.getSongs() != null){
-			//trying this new adapter method of things
 			SongAdapter songAdt = new SongAdapter(getActivity(), AddPlaylistView.getSongs());
 			setListAdapter(songAdt);
 		}
