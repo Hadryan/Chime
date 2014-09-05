@@ -15,6 +15,11 @@ public class SongsFragment extends ListFragment{
 	// the songs to be added to the playlist
 	Map<String, Song> songsForPlaylist = null;
 	
+	//position in the list to be saved 
+	private int index = -1;
+	private int top = 0;
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -41,7 +46,24 @@ public class SongsFragment extends ListFragment{
 	//save the current user selections here
 	@Override
 	public void onPause(){
-		
+		super.onPause();
+	    try{
+	       index = this.getListView().getFirstVisiblePosition();
+	       View v = this.getListView().getChildAt(0);
+	       top = (v == null) ? 0 : v.getTop();
+	    }
+	    catch(Throwable t){
+	       t.printStackTrace();
+	    }
+	}
+	
+	@Override
+	public void onResume(){
+		SongAdapter songAdt = new SongAdapter(getActivity(), AddPlaylistView.getSongs());
+		setListAdapter(songAdt);
+	    if(index!=-1){
+	       this.getListView().setSelectionFromTop(index, top);
+	    }
 	}
 	
 	public void getSongList() {
