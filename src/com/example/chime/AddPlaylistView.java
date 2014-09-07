@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.example.chime.MusicService.MusicBinder;
+
 import models.Song;
 import android.app.ActionBar;
 import android.content.ContentResolver;
@@ -19,6 +21,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+import android.os.IBinder;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.view.MenuItem;
+import android.view.View;
+import com.example.chime.MusicService.MusicBinder;
 
 
 
@@ -29,11 +39,29 @@ public class AddPlaylistView extends FragmentActivity implements ActionBar.TabLi
 	private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
 	private static final String TAG = "MusicGrabber";
 	
+	private MusicService musicSrv;
+	private Intent playIntent;
+	private boolean musicBound=false;
+	
 	//All of the songs on the device
 	public static ArrayList<Song> music = new ArrayList<Song>();
 	static ArrayList<String> allArtists = new ArrayList<String>();
 	static Map<String, ArrayList<Song>> songsInArtistFormat = new HashMap<String, ArrayList<Song>>();
 	static Map<String, ArrayList<Song>> songsInGenreFormat;
+	
+	/*
+	 * Bring the music service with this activity. (non-Javadoc)
+	 * @see android.support.v4.app.FragmentActivity#onStart()
+	 */
+	@Override
+	protected void onStart() {
+	  super.onStart();
+	  if(playIntent==null){
+	    playIntent = new Intent(this, MusicService.class);
+	    bindService(playIntent, musicConnection, Context.BIND_AUTO_CREATE);
+	    startService(playIntent);
+	  }
+	}
 	
 	
 	@Override
@@ -76,6 +104,30 @@ public class AddPlaylistView extends FragmentActivity implements ActionBar.TabLi
 	    actionBar.addTab(actionBar.newTab().setText("Artists").setTabListener(this));
 	    
 	    
+	}
+	
+	//connect to the service
+	private ServiceConnection musicConnection = new ServiceConnection(){
+	 
+	  @Override
+	  public void onServiceConnected(ComponentName name, IBinder service) {
+	    MusicBinder binder = (MusicBinder)service;
+	    //get service
+	    musicSrv = binder.getService();
+	    //pass list
+	    musicSrv.setList(music);
+	    musicBound = true;
+	  }
+	 
+	  @Override
+	  public void onServiceDisconnected(ComponentName name) {
+	    musicBound = false;
+	  }
+	};
+	
+	public void songPicked(View view){
+	  musicSrv.setSong(Integer.parseInt(view.getTag().toString()));
+	  musicSrv.playSong();
 	}
 	
 	@Override
@@ -122,12 +174,24 @@ public class AddPlaylistView extends FragmentActivity implements ActionBar.TabLi
 			startActivity(intent);
 			return true;
 		case R.id.new_playlist_settings:
-			Intent intent1 = new Intent(this, Settings.class);
-			startActivity(intent1);
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
+//			Intent intent1 = new Intent(this, Settings.class);
+//			startActivity(intent1);
+//			return true;
+			stopService(playIntent);
+			musicSrv=null;
+			System.exit(0);
+			break;
 		}
+		return super.onOptionsItemSelected(item);
+		
+		
+	}
+	
+	@Override
+	protected void onDestroy() {
+	  stopService(playIntent);
+	  musicSrv=null;
+	  super.onDestroy();
 	}
 
 	

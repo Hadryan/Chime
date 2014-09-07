@@ -59,6 +59,7 @@ public class SongsFragment extends ListFragment{
 	
 	@Override
 	public void onResume(){
+		super.onResume();
 		SongAdapter songAdt = new SongAdapter(getActivity(), AddPlaylistView.getSongs());
 		setListAdapter(songAdt);
 	    if(index!=-1){
@@ -66,9 +67,6 @@ public class SongsFragment extends ListFragment{
 	    }
 	}
 	
-	public void getSongList() {
-		  //retrieve song info
-		}
 	
 	
 	
