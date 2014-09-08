@@ -7,43 +7,14 @@ import models.Song;
 
 public class Playlists {
 	
-	//Initial data to be held by all play lists
+	//Initial data to be held by all playlists
 	String name;
-	Map<String, Song> songs;
-	Map<String, ArrayList<Song>> artists;
-	Map<String, ArrayList<Song>> genres;
-	
-	//Map to store playlists
-	public static Map<String, ArrayList<String>> playlists;
-	
-	
-	public Playlists(String name, Map<String, Song> songs, Map<String, ArrayList<Song>> artists,
-			Map<String, ArrayList<Song>> genres){
+	ArrayList<Song> songList;
+
+	public Playlists(String name, ArrayList<Song> songList){
 		this.name = name;
-		this.songs = songs;
-		this.artists = artists;
-		this.genres = genres;
+		this.songList = songList;
 	}
-	
-	
-	public boolean newPlaylist(){
-		return false;
-		
-	}
-	
-	public void populateSongListView(){
-		
-	}
-	
-	public void populateArtistView(){
-		
-	}
-	
-	public void populateGenreView(){
-		
-	}
-	
-	
 	
 	public boolean saveToDevice(){
 		return false;

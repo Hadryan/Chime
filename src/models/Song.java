@@ -1,5 +1,7 @@
 package models;
 
+import java.util.ArrayList;
+
 import android.content.ContentUris;
 import android.net.Uri;
 
@@ -9,6 +11,9 @@ public class Song{
     String title;
     String album;
     long duration;
+    
+    //List of playlists this song belongs to
+	private ArrayList<Playlists> listOfPlaylists = new ArrayList<Playlists>();
     
     public Song(long id, String artist, String title, String album, long duration) {
         this.id = id;
@@ -36,4 +41,16 @@ public class Song{
         return ContentUris.withAppendedId(
                 android.provider.MediaStore.Audio.Media.INTERNAL_CONTENT_URI, id);
     }
+    
+    //This will add the song to the playlist (when the user clicks on the checkbox) 
+    public void addToPlaylist(Playlists current){
+    	listOfPlaylists.add(current);
+    }
+    
+    //Will delete 
+    public void deleteFromPlaylist(Playlists current){
+    	listOfPlaylists.remove(current);
+    }
+    
+    
 }

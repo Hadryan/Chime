@@ -31,27 +31,27 @@ import android.view.View;
 import com.example.chime.MusicService.MusicBinder;
 
 
-
-
-
 public class AddPlaylistView extends FragmentActivity implements ActionBar.TabListener{
 	
 	private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
 	private static final String TAG = "MusicGrabber";
 	
+	//Service to play music on an Android device
 	private MusicService musicSrv;
 	private Intent playIntent;
 	private boolean musicBound=false;
 	
 	//All of the songs on the device
 	public static ArrayList<Song> music = new ArrayList<Song>();
+	
+	//All Artists on the device
 	static ArrayList<String> allArtists = new ArrayList<String>();
+	
+	//A nice map to store all of each artists songs
 	static Map<String, ArrayList<Song>> songsInArtistFormat = new HashMap<String, ArrayList<Song>>();
-	static Map<String, ArrayList<Song>> songsInGenreFormat;
 	
 	/*
-	 * Bring the music service with this activity. (non-Javadoc)
-	 * @see android.support.v4.app.FragmentActivity#onStart()
+	 * Start the music service when this activity starts
 	 */
 	@Override
 	protected void onStart() {
@@ -68,6 +68,7 @@ public class AddPlaylistView extends FragmentActivity implements ActionBar.TabLi
 	public void onCreate(Bundle savedInstanceState) {
 		//implement tabs
 		final ActionBar actionBar = getActionBar();
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.new_playlist_view);
@@ -79,14 +80,14 @@ public class AddPlaylistView extends FragmentActivity implements ActionBar.TabLi
 		// minSDKVersion is 11 or higher
 	    getActionBar().setDisplayHomeAsUpEnabled(true);
 	    
-	    //Prepare all music from the phone.
+	    //Prepare all music from the phone
 	    musicGrabber();
 	
-		//Make a list of all artists
-	    
+		//Make a list of all artists if music is available
 	    if (music != null){
+	    	//Loop through the entire music library
 	    	for (int i = 0;i < music.size();i++){
-		        //adds a track to its artist key
+		        //Adds the track to its artist key in our map songsInArtistFormat
 	    		Song tempSong = music.get(i);
 	    		ArrayList<Song> emptyList = new ArrayList<Song>();
 	    		if(songsInArtistFormat.get(tempSong.getArtist()) == null){
@@ -95,18 +96,15 @@ public class AddPlaylistView extends FragmentActivity implements ActionBar.TabLi
 	    		songsInArtistFormat.get(tempSong.getArtist()).add(tempSong);
 		    }
 	    }
-	    
-	    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		
-		
-		//Add 2 tabs 
+	   
+		//Add 2 tabs after we have set up our song list and artist list
 	    actionBar.addTab(actionBar.newTab().setText("Songs").setTabListener(this));
 	    actionBar.addTab(actionBar.newTab().setText("Artists").setTabListener(this));
-	    
-	    
 	}
 	
-	//connect to the service
+	/*
+	 * Connect our activity to the music service
+	 */
 	private ServiceConnection musicConnection = new ServiceConnection(){
 	 
 	  @Override
@@ -125,6 +123,9 @@ public class AddPlaylistView extends FragmentActivity implements ActionBar.TabLi
 	  }
 	};
 	
+	/*
+	 * Send a notification to the service to play the song we have picked.
+	 */
 	public void songPicked(View view){
 	  musicSrv.setSong(Integer.parseInt(view.getTag().toString()));
 	  musicSrv.playSong();
@@ -146,6 +147,9 @@ public class AddPlaylistView extends FragmentActivity implements ActionBar.TabLi
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 	
+	/*
+	 * Switch the view to the artist view from the song view or vice versa.
+	 */
 	@Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
 	    if (tab.getPosition() == 0) {
@@ -162,9 +166,10 @@ public class AddPlaylistView extends FragmentActivity implements ActionBar.TabLi
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 	
-	
-	
-	
+	/*
+	 * Eventually we will have *edit name of playlist*, *pick location*, and *cancel*
+	 * as icons here in this menu
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		//Handle presses on the action bar items
@@ -177,16 +182,18 @@ public class AddPlaylistView extends FragmentActivity implements ActionBar.TabLi
 //			Intent intent1 = new Intent(this, Settings.class);
 //			startActivity(intent1);
 //			return true;
+			//using this to stop playback of music currently
 			stopService(playIntent);
 			musicSrv=null;
 			System.exit(0);
 			break;
 		}
 		return super.onOptionsItemSelected(item);
-		
-		
 	}
 	
+	/*
+	 * Used to stop music currently.
+	 */
 	@Override
 	protected void onDestroy() {
 	  stopService(playIntent);
@@ -202,13 +209,19 @@ public class AddPlaylistView extends FragmentActivity implements ActionBar.TabLi
 		return super.onCreateOptionsMenu (menu);
 	}
 
-	
+	/*
+	 * Returns the list of all songs on the device. 
+	 */
 	public static ArrayList<Song> getSongs(){
 		return music;
 	}
 	
-	@SuppressWarnings("unchecked")
+	/*
+	 * Returns all of the artists in an arraylist.
+	 */
 	public static ArrayList<String> getArtists(){
+		//Loop through all of the keys because java doesnt like casting 
+		//a keyset to an arraylist apparently
 		if(songsInArtistFormat != null){
 			for(String v : songsInArtistFormat.keySet()){
 				allArtists.add(v);
@@ -217,21 +230,18 @@ public class AddPlaylistView extends FragmentActivity implements ActionBar.TabLi
 		return allArtists;
 	}
 	
+	/*
+	 * Returns a map of all of the songs in <artist, list of artists songs format>
+	 */
 	public static Map<String, ArrayList<Song>> getSongsInArtistFormat(){
 		return songsInArtistFormat;
 	}
 	
-	public static Map<String, ArrayList<Song>> getSongsInGenreFormat(){
-		return songsInGenreFormat;
-	}
-	
-	
-	
+
+	/*
+	 * Queries the devices external storage for music. Puts it into the list: music()
+	 */
 	public void musicGrabber(){
-		//Technically (for instance on my nexus 5) the music is stored on the 
-		//internal storage but for some reason it is recognized as an 
-		//external storage, more research has to be done here
-		
 		//the content resolver
 		ContentResolver mContentResolver = getContentResolver();
 		
@@ -284,6 +294,8 @@ public class AddPlaylistView extends FragmentActivity implements ActionBar.TabLi
         
         Log.i(TAG, "Done querying media. MusicGrabber is ready.");
 	}
+	
+	
 
 	
 	

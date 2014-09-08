@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+//Main menu
 public class MainActivity extends Activity implements View.OnClickListener{
 	
 	Button mPlayButton;

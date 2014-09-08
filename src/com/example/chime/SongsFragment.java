@@ -43,7 +43,7 @@ public class SongsFragment extends ListFragment{
 		//for instance
 	}
 	
-	//save the current user selections here
+	//save the current user selections here (currently not working :( )
 	@Override
 	public void onPause(){
 		super.onPause();
@@ -57,6 +57,9 @@ public class SongsFragment extends ListFragment{
 	    }
 	}
 	
+	/*
+	 * Want it to save the index position we are at but currently not working
+	 */
 	@Override
 	public void onResume(){
 		super.onResume();

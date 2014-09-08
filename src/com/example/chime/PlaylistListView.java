@@ -1,5 +1,9 @@
 package com.example.chime;
 
+import java.util.ArrayList;
+
+import models.Playlists;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class PlaylistListView extends Activity{
+	
+	//Static list of all playlists held on this device
+	public static ArrayList<Playlists> listOfAllPlaylists; 
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){

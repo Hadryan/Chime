@@ -55,6 +55,4 @@ public class ArtistAdapter extends BaseAdapter{
 	    return artistLay;
 	}
 	
-	
-
 }

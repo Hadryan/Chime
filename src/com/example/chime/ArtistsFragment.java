@@ -22,9 +22,6 @@ public class ArtistsFragment extends ListFragment{
 		
 		super.onCreate(savedInstanceState);
 		
-		//hide action bar because we just want a list view in this fragment
-		//getActivity().getActionBar().hide();
-		
 		if (AddPlaylistView.getArtists() != null){
 			ArtistAdapter songAdt = new ArtistAdapter(getActivity(),
 					AddPlaylistView.getArtists());
