@@ -1,4 +1,4 @@
-package com.example.chime;
+package frontend;
 
 public class Settings {
 

@@ -1,11 +1,10 @@
-package com.example.chime;
+package frontend;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import java.util.ArrayList;
 
-import models.Song;
 import android.content.ContentUris;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -13,6 +12,7 @@ import android.net.Uri;
 import android.os.Binder;
 import android.os.PowerManager;
 import android.util.Log;
+import backend.Song;
 
 public class MusicService extends Service implements MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener,
 MediaPlayer.OnCompletionListener {

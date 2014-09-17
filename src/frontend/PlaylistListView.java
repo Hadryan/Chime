@@ -1,8 +1,11 @@
-package com.example.chime;
+package frontend;
 
 import java.util.ArrayList;
 
-import models.Playlists;
+import backend.Playlists;
+
+import com.example.chime.R;
+
 
 import android.app.Activity;
 import android.content.Intent;

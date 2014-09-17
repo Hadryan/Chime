@@ -1,12 +1,22 @@
-package com.example.chime;
+package frontend;
 
 import java.util.Map;
 
-import models.Song;
+import backend.Song;
+
 import android.support.v4.app.ListFragment;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.app.Activity;
+import android.widget.CheckBox;
 
 public class SongsFragment extends ListFragment{
 	
@@ -23,25 +33,32 @@ public class SongsFragment extends ListFragment{
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		//hide action bar because we just want a list view in this fragment
-		//getActivity().getActionBar().hide();
-
+		
 		//Check if there is even music on the device.
 		if (AddPlaylistView.getSongs() != null){
 			SongAdapter songAdt = new SongAdapter(getActivity(), AddPlaylistView.getSongs());
 			setListAdapter(songAdt);
 		}
 		
-		//TODO: Going to have to switch to expandableListView class as I want to group Songs
 		
 		
 	}
 	
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long ld){
-		//TODO: make grouping selections when clicking on items, to be saved for a play list later
-		//for instance
-	}
+//	@Override
+//	public void onListItemClick(ListView l, View v, int position, long ld){
+//		//checkboxs will show as clicked when anywhere on the list item is clicked
+//		StringBuilder result = new StringBuilder();
+//        for(int i=0;i<SongAdapter.mCheckStates.size();i++)
+//        {
+//            if(SongAdapter.mCheckStates.get(i)==true)
+//            {
+//
+//                               result.append([i].applicationName);
+//                result.append("\n");
+//            }
+//
+//        }
+//	}
 	
 	//save the current user selections here (currently not working :( )
 	@Override

@@ -1,25 +1,30 @@
-package com.example.chime;
+package frontend;
 
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import java.util.ArrayList;
 
-import models.Song;
+import com.example.chime.R;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import backend.Song;
 
 
-public class SongAdapter extends BaseAdapter{
+public class SongAdapter extends BaseAdapter {
 	
 	private ArrayList<Song> songs;
 	private LayoutInflater songInf;
+	static SparseBooleanArray mCheckStates; 
 	
 	public SongAdapter(Context c, ArrayList<Song> theSongs){
 		songs=theSongs;
 		songInf=LayoutInflater.from(c);
+		mCheckStates = new SparseBooleanArray(songs.size());
 	}
 
 	@Override
@@ -49,6 +54,7 @@ public class SongAdapter extends BaseAdapter{
 	    TextView artistView = (TextView)songLay.findViewById(R.id.song_artist);
 	    //get song using position
 	    Song currSong = songs.get(position);
+	    mCheckStates.get(position, false);
 	    //get title and artist strings
 	    songView.setText(currSong.getTitle());
 	    artistView.setText(currSong.getArtist());
@@ -56,5 +62,26 @@ public class SongAdapter extends BaseAdapter{
 	    songLay.setTag(position);
 	    return songLay;
 	}
+	
+	/*
+	 * Turns a list item to the unchecked postion.
+	 */
+	 public boolean isChecked(int position) {
+        return mCheckStates.get(position, false);
+    }
+	
+	/*
+	 * Will be used to set list items to the checked position.
+	 */
+	public void setChecked(int position, boolean isChecked) {
+        mCheckStates.put(position, isChecked);
+    }
+	
+	/*
+	 * Will toggle a list items check box.
+	 */
+	public void toggle(int position) {
+        setChecked(position, !isChecked(position));
+    }
 
 }

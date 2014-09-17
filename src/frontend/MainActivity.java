@@ -1,4 +1,6 @@
-package com.example.chime;
+package frontend;
+
+import com.example.chime.R;
 
 import android.app.Activity;
 import android.content.Intent;

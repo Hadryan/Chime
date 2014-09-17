@@ -21,7 +21,7 @@
         android:theme="@style/AppTheme"
          >
         <activity
-            android:name="com.example.chime.MainActivity"
+            android:name="frontend.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" >
@@ -32,24 +32,24 @@
             </intent-filter>
         </activity>
         <activity
-        android:name="com.example.chime.PlaylistListView"
+        android:name="frontend.PlaylistListView"
         android:label="@string/list_playlist"
-        android:parentActivityName="com.example.chime.MainActivity" >
+        android:parentActivityName="frontend.MainActivity" >
         <!-- Parent activity meta-data to support 4.0 and lower -->
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.example.chime.MainActivity" />
         </activity>
         <activity
-        android:name="com.example.chime.AddPlaylistView"
+        android:name="frontend.AddPlaylistView"
         android:label="@string/add_playlist_string"
-        android:parentActivityName="com.example.chime.PlaylistView" >
+        android:parentActivityName="frontend.PlaylistView" >
         <!-- Parent activity meta-data to support 4.0 and lower -->
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.example.chime.PlayListView" />
         </activity>
-        <service android:name="com.example.chime.MusicService" />
+        <service android:name="frontend.MusicService" />
     </application>
 
 </manifest>

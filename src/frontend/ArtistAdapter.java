@@ -1,15 +1,17 @@
-package com.example.chime;
+package frontend;
 
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import java.util.ArrayList;
 
-import models.Song;
+import com.example.chime.R;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import backend.Song;
 
 
 public class ArtistAdapter extends BaseAdapter{

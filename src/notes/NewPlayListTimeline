@@ -40,12 +40,7 @@ List of things to do:
 -need to add listener to list items, listview.setOnItemClickListener();
 
 List of notes:
--need to consider when same subset of songs are to be included in the same play list, for instance when 
-a user clicks some songs on the songs frag and then clicks on an artist in the artists frag that
-includes the song which is already clicked.
-In this instance both can be clicked but a checker must run after the playlist is
-saved to make sure only one reference to the song(item) is included in the playlist and not two
--
+-ask the user for the name of the playlist when clicking 'new playlist' not when the addplaylistview button is pressed
 
 
 

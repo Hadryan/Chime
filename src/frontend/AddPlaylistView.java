@@ -1,12 +1,14 @@
-package com.example.chime;
+package frontend;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.example.chime.MusicService.MusicBinder;
+import backend.Playlists;
+import backend.Song;
 
-import models.Song;
+import com.example.chime.R;
+
 import android.app.ActionBar;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -20,6 +22,9 @@ import android.app.FragmentTransaction;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.os.IBinder;
 import android.content.ComponentName;
@@ -28,10 +33,13 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.view.MenuItem;
 import android.view.View;
-import com.example.chime.MusicService.MusicBinder;
+import frontend.MusicService.MusicBinder;
+import android.widget.PopupWindow;
+import android.widget.LinearLayout;
+import android.view.ViewGroup.LayoutParams;
 
 
-public class AddPlaylistView extends FragmentActivity implements ActionBar.TabListener{
+public class AddPlaylistView extends FragmentActivity implements ActionBar.TabListener, OnClickListener{
 	
 	private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
 	private static final String TAG = "MusicGrabber";
@@ -50,6 +58,15 @@ public class AddPlaylistView extends FragmentActivity implements ActionBar.TabLi
 	//A nice map to store all of each artists songs
 	static Map<String, ArrayList<Song>> songsInArtistFormat = new HashMap<String, ArrayList<Song>>();
 	
+	//new Playlist the user is currently editing
+	Playlists newPlaylist;
+	
+	//Variables associated with Popupwindow
+	PopupWindow newPlaylistNamePopup;
+	Button saveNameOfPlaylist;
+	TextView popupText;
+	LinearLayout layoutOfPopup;
+	
 	/*
 	 * Start the music service when this activity starts
 	 */
@@ -66,6 +83,24 @@ public class AddPlaylistView extends FragmentActivity implements ActionBar.TabLi
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		//popupwindow asking for the name of the new playlist
+		saveNameOfPlaylist = new Button(this);
+		popupText = new TextView(this);
+		layoutOfPopup = new LinearLayout(this);
+		saveNameOfPlaylist.setText("OK");
+		popupText.setText("This is Popup Window.press OK to dismiss         it.");
+		popupText.setPadding(0, 0, 0, 20);
+		layoutOfPopup.setOrientation(1);
+		layoutOfPopup.addView(popupText);
+		layoutOfPopup.addView(saveNameOfPlaylist);
+		saveNameOfPlaylist.setOnClickListener(this);
+		newPlaylistNamePopup = new PopupWindow(layoutOfPopup, LayoutParams.FILL_PARENT,
+				LayoutParams.WRAP_CONTENT);
+		newPlaylistNamePopup.setContentView(layoutOfPopup);
+		newPlaylistNamePopup.showAsDropDown(layoutOfPopup, 0, 0);
+		
+
+
 		//implement tabs
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -294,8 +329,17 @@ public class AddPlaylistView extends FragmentActivity implements ActionBar.TabLi
         
         Log.i(TAG, "Done querying media. MusicGrabber is ready.");
 	}
+
+
+	@Override
+	public void onClick(View v) {
+		newPlaylistNamePopup.dismiss();
+	}
 	
 	
+
+
+
 
 	
 	
