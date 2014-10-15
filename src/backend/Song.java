@@ -13,7 +13,7 @@ public class Song{
     long duration;
     
     //List of playlists this song belongs to
-	private ArrayList<Playlists> listOfPlaylists = new ArrayList<Playlists>();
+	private ArrayList<Playlist> listOfPlaylists = new ArrayList<Playlist>();
     
     public Song(long id, String artist, String title, String album, long duration) {
         this.id = id;
@@ -43,12 +43,12 @@ public class Song{
     }
     
     //This will add the song to the playlist (when the user clicks on the checkbox) 
-    public void addToPlaylist(Playlists current){
+    public void addToPlaylist(Playlist current){
     	listOfPlaylists.add(current);
     }
     
     //Will delete 
-    public void deleteFromPlaylist(Playlists current){
+    public void deleteFromPlaylist(Playlist current){
     	listOfPlaylists.remove(current);
     }
     

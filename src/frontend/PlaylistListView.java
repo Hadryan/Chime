@@ -2,11 +2,6 @@ package frontend;
 
 import java.util.ArrayList;
 
-import backend.Playlists;
-
-import com.example.chime.R;
-
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,13 +11,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import backend.Playlist;
+
+import com.example.chime.R;
 
 public class PlaylistListView extends Activity implements OnClickListener{
 	
@@ -34,7 +30,7 @@ public class PlaylistListView extends Activity implements OnClickListener{
 	private LinearLayout layoutOfPopup;
 	
 	//Static list of all playlists held on this device
-	public static ArrayList<Playlists> listOfAllPlaylists; 
+	public static ArrayList<Playlist> listOfAllPlaylists; 
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
