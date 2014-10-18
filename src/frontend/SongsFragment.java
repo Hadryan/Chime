@@ -40,25 +40,7 @@ public class SongsFragment extends ListFragment{
 			setListAdapter(songAdt);
 		}
 		
-		
-		
 	}
-	
-//	@Override
-//	public void onListItemClick(ListView l, View v, int position, long ld){
-//		//checkboxs will show as clicked when anywhere on the list item is clicked
-//		StringBuilder result = new StringBuilder();
-//        for(int i=0;i<SongAdapter.mCheckStates.size();i++)
-//        {
-//            if(SongAdapter.mCheckStates.get(i)==true)
-//            {
-//
-//                               result.append([i].applicationName);
-//                result.append("\n");
-//            }
-//
-//        }
-//	}
 	
 	//save the current user selections here (currently not working :( )
 	@Override
@@ -86,6 +68,7 @@ public class SongsFragment extends ListFragment{
 	       this.getListView().setSelectionFromTop(index, top);
 	    }
 	}
+	
 	
 	
 	

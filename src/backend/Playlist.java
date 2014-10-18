@@ -6,13 +6,16 @@ import java.util.Map;
 import backend.Song;
 
 
-public class Playlists {
+
+public class Playlist {
 	
-	//Initial data to be held by all playlists
+	static public ArrayList<Playlist> allPlaylists = new ArrayList<Playlist>();
+	
+	//Variables for each playlist class
 	String name;
 	ArrayList<Song> songList;
 
-	public Playlists(String name, ArrayList<Song> songList){
+	public Playlist(String name, ArrayList<Song> songList){
 		this.name = name;
 		this.songList = songList;
 	}

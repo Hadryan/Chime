@@ -54,6 +54,7 @@ public class SongAdapter extends BaseAdapter {
 	    TextView artistView = (TextView)songLay.findViewById(R.id.song_artist);
 	    //get song using position
 	    Song currSong = songs.get(position);
+	    //get the checked boxes
 	    mCheckStates.get(position, false);
 	    //get title and artist strings
 	    songView.setText(currSong.getTitle());
@@ -64,17 +65,17 @@ public class SongAdapter extends BaseAdapter {
 	}
 	
 	/*
-	 * Turns a list item to the unchecked postion.
-	 */
-	 public boolean isChecked(int position) {
-        return mCheckStates.get(position, false);
-    }
-	
-	/*
 	 * Will be used to set list items to the checked position.
 	 */
 	public void setChecked(int position, boolean isChecked) {
         mCheckStates.put(position, isChecked);
+    }
+	
+	/*
+	 * Turns a list item to the unchecked postion.
+	 */
+	 public boolean isChecked(int position) {
+        return mCheckStates.get(position, false);
     }
 	
 	/*
