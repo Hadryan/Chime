@@ -3,14 +3,18 @@ Chime
 
 ### Location-based Music Player Android App!
 
-Currently in development. The app queries the songs on the device and you can play songs if you press on the item in the list view. Merging the test branch soon. 
+An app which lets users create playlists and designate them to different locations. Once 'play' is pressed on the main screen, the playlist which is designated to the location the user is in will start playing.
 
-Eventually you will be able to just press 'play' on the main screen and music will start playing based on the user location and pre-set playlists.
+Currently the app queries the songs on the device and you can play songs if you press on the item in the list view. Merging the test branch soon. 
 
-## How to run using Eclipse ADT
+### Features being worked on:
+ *Saving the playlist to disk
+ *Using google maps to associate a location with a playlist
+ *Main "play" screen, where current playlist will be shown, current location, etc
+
+### How to run using Eclipse ADT
 
 Note: This has only been tested with the Android 4.4 SDK.
-=========================================================
 
 Open Eclipse, set workspace to Chime, file -> import... -> android -> existing projects into workspace, set the root directory to Chime, click finish, then wait for project to build automatically, run -> run -> android application, NOTE: If you experience difficulties, clean the project first.
 
